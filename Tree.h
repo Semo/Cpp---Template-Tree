@@ -89,20 +89,20 @@ namespace mystl {
     iterator first() {
       node* firstNode;
       firstNode = m_root->findFirst();
-      iterator it(firstNode);
+      iterator it(firstNode, this);
       return it;
     }
 
     iterator last() {
       node* lastNode;
       lastNode = m_root->findLast();
-      iterator it(lastNode);
+      iterator it(lastNode, this);
       return it;
     }
 
     iterator find(const T& value) {
       node treeNode;
-      treeNode = m_root->find(value);
+      treeNode = m_root->find(value, this);
       iterator it(treeNode);
       return it;
     }

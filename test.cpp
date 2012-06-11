@@ -93,7 +93,7 @@ int main()
   cout << "empty tree: ";
   assert(printAndCount(t) == 0);
 
-  //assert(printAndCount(t) == 0);
+  assert(printAndCount(t) == 0);
 
 
   // insert elements in a certain order
@@ -139,13 +139,14 @@ int main()
   ft.insert(6.2);
   ft.insert(4.3332);
   ft.insert(17.20);
-  //cout << "reverse-sorted 4-float tree: ";
+  cout << "reverse-sorted 4-float tree: ";
   assert(printAndCount(ft) == 4);
 
   // if we list elements backwards, they should be
   //   in the same order as with the function Less<>
-  //    cout << "listing backwards: ";
-  //assert(printAndCountBackwards(ft) == 4);
+  cout << "listing backwards: ";
+  assert(printAndCountBackwards(ft) == 4);
+  printAndCountBackwards(ft);
 
 
   /////////////////////////////////////////
@@ -157,7 +158,7 @@ int main()
   Pair<int,string> p7(7,"James Bond");
   string value;
 
-  #if 0 // move this line down while your implementation proceeds...
+#if 0 // move this line down while your implementation proceeds...
   Map<int,string, MapToFirst<int,string,Less> > m;
 
   // insert pairs of (key,value)
