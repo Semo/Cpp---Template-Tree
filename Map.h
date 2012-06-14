@@ -37,15 +37,22 @@ namespace mystl {
      * @return Value of Type
      */
     ValueT& operator[](const KeyT& key) {
+//      iterator it = find(key);
+//      if(it == tree.end()) {
+//          valueType vt(key,ValueT());
+//          v = insert(vt)->second();
+//          return v;
+//        } else {
+//          v = it->second();
+//          return v;
+//        }
       iterator it = find(key);
-      if(it == tree.end()) {
-          valueType vt(key,ValueT());
-          v = insert(vt)->second();
-          return v;
-        } else {
-          v = it->second();
-          return v;
-        }
+           if(it == tree.end()) {
+               valueType vt(key,ValueT());
+               return this->insert(vt)->second();
+           } else {
+               return it->second();
+           }
     }
 
     /**
