@@ -13,6 +13,9 @@ namespace mystl {
     *
     * Diese Klasse ist ein Hilfsmittel, um über die Elemente eines Baumes iterieren zu können.
     * Dafür wird für jede mögliche Operation eine Funktion bereitgestellt.
+    *
+    * @author François Dubois <siokdub@gmail.com>
+    * @author Sebastian Morkisch <semox78@gmail.com>
     */
 
   class TreeIterator {
@@ -23,7 +26,7 @@ namespace mystl {
      * @brief TreeIterator
      *
      * Konstruktor bei dem der Klasse zum iterieren über die Elemente einmal ein Knoten
-     * und der Baum übergeben werden.
+     * und der Baum übergeben werden. Die Werte werden bei nicht Angabe vorinitialisiert.
      * @param node
      * @param tree
      */
@@ -43,13 +46,19 @@ namespace mystl {
     /**
      * @brief operator ->
      *
-     *
-     * @return
+     * Gibt den Pointer einer Referenz zurück
+     * @return T*
      */
     T* operator->() {
       return &(m_node->m_value);
     }
 
+    /**
+     * @brief operator ++
+     *
+     * Vorwärtsiterator
+     * @return Referenz auf einen nächsten Nachfolgeknoten
+     */
     TreeIterator<T,O>& operator++() {
       TreeNode<T,O>* node;
       if (this->m_node->m_right != 0) {
@@ -67,6 +76,13 @@ namespace mystl {
       return *this;
     }
 
+
+    /**
+     * @brief operator --
+     *
+     * Rückwärtsiterator
+     * @return Referenz auf einen Parentknoten.
+     */
     TreeIterator<T,O>& operator--() {
       TreeNode<T, O>* node;
 
@@ -89,11 +105,24 @@ namespace mystl {
       return *this;
     }
 
+    /**
+     * @brief operator ==
+     *
+     * Macht einen Referenzvergleich.
+     * @param rhs (righthandside)
+     * @return bool
+     */
     bool operator == (const TreeIterator<T,O> & rhs) {
       if (rhs.m_node == 0 || this->m_node == 0)
         return rhs.m_node == this->m_node;
       return (&this->m_node->m_value) == (&rhs.m_node->m_value);
     }
+
+    /**
+     * @brief operator !=
+     * @param rhs (righthandside)
+     * @return bool
+     */
 
     bool operator != (const TreeIterator<T,O> & rhs) {
       if (rhs.m_node == 0 || this->m_node == 0)
