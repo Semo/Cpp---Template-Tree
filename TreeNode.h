@@ -11,6 +11,15 @@ class Tree;
 
 
 template<typename T, typename O>
+
+/**
+ * @brief The TreeNode class
+ *
+ * Diese Klasse repräsentiert einen Knoten eines Baumes.
+ *
+ * @author François Dubois <siokdub@gmail.com>
+ * @author Sebastian Morkisch <semox78@gmail.com>
+ */
 class TreeNode {
 
     friend class TreeIterator<T,O>;
@@ -20,6 +29,13 @@ class TreeNode {
 
 public:
 
+    /**
+     * @brief TreeNode
+     *
+     * Konstruktor. Beim Erstellen des Baumes, werden sämtliche Zeiger auf andere Elemente auf
+     * Null initialisiert.
+     * @param up
+     */
     TreeNode(node* up) {
 
         m_right = 0;
@@ -28,13 +44,26 @@ public:
 
     }
 
+    /**
+     * @brief value
+     *
+     * Gibt den Wert des Knotens zurück.
+     * @return
+     */
     T& value() {
         return m_value;
     }
 
+    /**
+     * @brief find
+     *
+     * Gibt den Knoten zurück, der dem gesuchten Value entspricht
+     * oder gibt Null zurück.
+     * @param value
+     * @return TreeNode
+     */
     TreeNode<T,O>* find(const T& value) {
         if (m_value == value) {
-            //cout << "value found" << endl;
             return this;
         }
         else {
@@ -52,6 +81,12 @@ public:
         }
     }
 
+    /**
+     * @brief findFirst
+     *
+     * Gibt den Leftest Node zurück.
+     * @return TreeNode
+     */
     TreeNode<T,O>* findFirst() {
         node* firstNode = this;
         while(firstNode->m_left != 0) {
@@ -60,6 +95,12 @@ public:
         return firstNode;
     }
 
+    /**
+     * @brief findLast
+     *
+     * Gibt den rightestNode zurück.
+     * @return TreeNode
+     */
     TreeNode<T,O>* findLast() {
         node* lastNode = this;
         while(lastNode->m_right != 0) {

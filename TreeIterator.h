@@ -26,8 +26,9 @@ namespace mystl {
      * @brief TreeIterator
      *
      * Konstruktor bei dem der Klasse zum iterieren über die Elemente einmal ein Knoten
-     * und der Baum übergeben werden. Die Werte werden bei nicht Angabe vorinitialisiert.
-     * @param node
+     * und der Baum übergeben werden.
+     * @param node* @author François Dubois <siokdub@gmail.com>
+    * @author Sebastian Morkisch <semox78@gmail.com>
      * @param tree
      */
     TreeIterator(TreeNode<T,O>* node, Tree<T, O>* tree): m_node(node), m_tree(tree){}
@@ -56,7 +57,7 @@ namespace mystl {
     /**
      * @brief operator ++
      *
-     * Vorwärtsiterator
+     * Vorwärtsiterator (inOrder)
      * @return Referenz auf einen nächsten Nachfolgeknoten
      */
     TreeIterator<T,O>& operator++() {
@@ -80,7 +81,7 @@ namespace mystl {
     /**
      * @brief operator --
      *
-     * Rückwärtsiterator
+     * Rückwärtsiterator (inOrder)
      * @return Referenz auf einen Parentknoten.
      */
     TreeIterator<T,O>& operator--() {
@@ -108,7 +109,7 @@ namespace mystl {
     /**
      * @brief operator ==
      *
-     * Macht einen Referenzvergleich.
+     * Prüft, ob es sich um den Iteratoren handelt, die auf den gleichen Knoten zeigen.
      * @param rhs (righthandside)
      * @return bool
      */
@@ -120,6 +121,8 @@ namespace mystl {
 
     /**
      * @brief operator !=
+     *
+     * Prüft, daß es sich bei den Iteratoren nicht um den gleichen Wert handelt.
      * @param rhs (righthandside)
      * @return bool
      */

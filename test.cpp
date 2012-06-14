@@ -179,7 +179,7 @@ int main()
     m[1] = p1.second();
     m[3] = p3.second();
     cout << "find 3 in map: " << (value=m[3]) << endl;
-    //assert(value == p3.second());
+    assert(value == p3.second());
 
     cout << "resulting map: ";
     assert(printAndCount(m) == 4);

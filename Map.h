@@ -32,20 +32,11 @@ namespace mystl {
     /**
      * @brief operator []
      *
-     * Dient dem speichern eines Wertes im Speicherbereich.
+     * Dient dem speichern eines Wertes an die Stelle von einem geg. Indizee
      * @param key
-     * @return iterator mit dem gefundenen Wert
+     * @return iterator mit dem gefundenen/überschriebenen Wert
      */
     ValueT& operator[](const KeyT& key) {
-      //      iterator it = find(key);
-      //      if(it == tree.end()) {
-      //          valueType vt(key,ValueT());
-      //          v = insert(vt)->second();
-      //          return v;
-      //        } else {
-      //          v = it->second();
-      //          return v;
-      //        }
       iterator it = find(key);
       if(it == tree.end()) {
           valueType vt(key,ValueT());
@@ -58,9 +49,9 @@ namespace mystl {
     /**
      * @brief find
      *
-     * Startwert von dem aus eine Suche im Baum beginnt.
+     * Suche einen Wert im Baum mittels der Referenz eines Keys.
      * @param key
-     * @return iterator mit dem gefundenen Wert
+     * @return iterator mit dem gefundenen Wert/ Nulliterator falls Wert unauffindbar
      */
     iterator find(const KeyT& key) {
       valueType vt(key,ValueT());
@@ -70,9 +61,9 @@ namespace mystl {
     /**
      * @brief insert
      *
-     * Dient dem Auffinden eines Wertes im Speicherbereich.
+     * Einfügen eines Wertes in den Baum
      * @param key
-     * @return iterator mit dem gefundenen Wert
+     * @return iterator mit neuem/überschriebenen Wert
      */
     iterator insert(const valueType& value) {
       return tree.insert(value);
@@ -81,9 +72,9 @@ namespace mystl {
     /**
      * @brief begin
      *
-     * Startwert von dem aus eine Suche im Baum beginnt.
+     * Startiterator eines Baumes. --> leftest Node
      * @param key
-     * @return iterator mit dem ersten gefundenen Wert
+     * @return iterator
      */
     iterator begin() {
       return tree.begin();
@@ -92,10 +83,9 @@ namespace mystl {
     /**
      * @brief end
      *
-     * Wenn das Ende eines Astes erreicht wurde, wird ein iterator
-     * mit der zuletzt erreichten Stelle returniert, wobei das end Element
-     * noch hinter das letzte Element zeigt. Das ist ein Nullzeiger.
-     * @return iterator mit dem letzten gefundenen Wert
+     * Der Iterator nach dem letzten Element zeigt auf einen nicht vorhandenen Knoten.
+     * Das ist ein Nullzeiger. (Null Iterator --> Ende des Baumes)
+     * @return iterator
      */
     iterator end() {
       return tree.end();
@@ -104,8 +94,8 @@ namespace mystl {
     /**
      * @brief first
      *
-     * Erstes Element im Baum, die Wurzel. (most left)
-     * @return iterator mit der Wurzel des Baumes
+     * Zeiger auf den leftest Node im Baum. (most left)
+     * @return iterator
      */
     iterator first() {
       return tree.first();
@@ -114,9 +104,8 @@ namespace mystl {
     /**
      * @brief last
      *
-     * Gibt einen Iterator mit dem letzten Element zurück, bevor
-     * end () erreicht wird. (most right element)
-     * @return iterator mit dem vorletzten Element auf einem Ast
+     * Gibt einen Zeiger auf den rightest Node wieder.
+     * @return iterator
      */
     iterator last() {
       return tree.last();
@@ -125,8 +114,7 @@ namespace mystl {
     /**
      * @brief min
      *
-     * min gibt den kleineren zweier Schlüssel zurück, also den von ganz weitesten links
-     * liegenden
+     * Gibt den Wert des leftest Node zurück.
      * @return den kleinsten Schlüssel
      */
 
@@ -137,7 +125,7 @@ namespace mystl {
     /**
      * @brief max
      *
-     * max gibt den größeren zweier Schlüssel zurück. Den am weitesten Rechts liegenden.
+     * Gibt den Wert des rightest Node zurück.
      * @return den größten Schlüssel
      */
     const KeyT& max() {
