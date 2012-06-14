@@ -23,7 +23,7 @@ namespace mystl {
 
     iterator insert(const T& value) {
       if (m_root == 0) {
-          m_root = new node();
+          m_root = new node(0);
           m_root->m_value = value;
         } else {
           node* foo = m_root->find(value);
@@ -37,17 +37,15 @@ namespace mystl {
                   bool left = order(value, pos->m_value);
                   if (left) {
                       if (pos->m_left == 0) {
-                          pos->m_left = new node();
+                          pos->m_left = new node(pos);
                           pos->m_left->m_value = value;
-                          pos->m_left->m_up = pos;
                           done = true;
                         }
                       pos = pos->m_left;
                     } else{
                       if (pos->m_right == 0) {
-                          pos->m_right = new node();
+                          pos->m_right = new node(pos);
                           pos->m_right->m_value = value;
-                          pos->m_right->m_up = pos;
                           done  = true;
                         }
                       pos = pos->m_right;
@@ -101,9 +99,9 @@ namespace mystl {
     }
 
     iterator find(const T& value) {
-      node treeNode;
-      treeNode = m_root->find(value, this);
-      iterator it(treeNode);
+      node* treeNode;
+      treeNode = m_root->find(value);
+      iterator it(treeNode,this);
       return it;
     }
 

@@ -20,10 +20,11 @@ class TreeNode {
 
 public:
 
-    ~TreeNode() {
+    TreeNode(node* up) {
+
         m_right = 0;
         m_left = 0;
-        m_up = 0;
+        m_up = up;
 
     }
 
@@ -32,8 +33,10 @@ public:
     }
 
     TreeNode<T,O>* find(const T& value) {
-        if (m_value == value)
+        if (m_value == value) {
+            //cout << "value found" << endl;
             return this;
+        }
         else {
             node* next = 0;
             O order;

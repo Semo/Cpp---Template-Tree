@@ -7,17 +7,47 @@
 namespace mystl {
 
   template<typename T, typename O>
+
+  /**
+    * @brief The TreeIterator class
+    *
+    * Diese Klasse ist ein Hilfsmittel, um über die Elemente eines Baumes iterieren zu können.
+    * Dafür wird für jede mögliche Operation eine Funktion bereitgestellt.
+    */
+
   class TreeIterator {
 
   public:
+
+    /**
+     * @brief TreeIterator
+     *
+     * Konstruktor bei dem der Klasse zum iterieren über die Elemente einmal ein Knoten
+     * und der Baum übergeben werden.
+     * @param node
+     * @param tree
+     */
     TreeIterator(TreeNode<T,O>* node, Tree<T, O>* tree): m_node(node), m_tree(tree){}
 
+    /**
+     * @brief operator *
+     *
+     * Gibt die Referenz eines Wertes im Baum zurück, um nicht mit Pointern zu arbeiten.
+     *
+     * @return T&
+     */
     T& operator*() {
       return m_node->m_value;
     }
 
+    /**
+     * @brief operator ->
+     *
+     *
+     * @return
+     */
     T* operator->() {
-      return *(m_node->m_value);
+      return &(m_node->m_value);
     }
 
     TreeIterator<T,O>& operator++() {
@@ -39,7 +69,6 @@ namespace mystl {
 
     TreeIterator<T,O>& operator--() {
       TreeNode<T, O>* node;
-      //new semicool stuff
 
       if(m_node == 0) {
           m_node =  m_tree->last ().m_node;
@@ -63,15 +92,13 @@ namespace mystl {
     bool operator == (const TreeIterator<T,O> & rhs) {
       if (rhs.m_node == 0 || this->m_node == 0)
         return rhs.m_node == this->m_node;
-
-      return this->m_node->m_value == rhs.m_node->m_value;
+      return (&this->m_node->m_value) == (&rhs.m_node->m_value);
     }
 
     bool operator != (const TreeIterator<T,O> & rhs) {
       if (rhs.m_node == 0 || this->m_node == 0)
         return rhs.m_node != this->m_node;
-
-      return this->m_node->m_value != rhs.m_node->m_value;
+      return (&this->m_node->m_value) != (&rhs.m_node->m_value);
     }
 
   private:

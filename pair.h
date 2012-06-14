@@ -23,6 +23,14 @@ public:
         return this->value;
     }
 
+    bool operator == (const Pair<T1,T2> & rhs) {
+        if(this->first() == rhs.first()) {
+            return true;
+        }
+        return false;
+
+    }
+
 private:
     T1 key;
     T2 value;
